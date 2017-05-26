@@ -47,12 +47,11 @@ input[type="text"].form-control::-webkit-input-placeholder {
 	padding: 10px 20px;
 }
 
-.btn-encuentrame{
+.btn-center{
 	padding: 10px 20px;
 }
 .btn-separator:after{
 	content: ' ';
-	display: block;
 	float: left;
 	background: white;
 	margin: 0 10px;

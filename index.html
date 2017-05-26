@@ -13,23 +13,27 @@
 	
 	<header>
 		<div class="container">
-			<div class="input-group input-group-unstyled col-md-5 col-xs-12">
+			<div class="input-group input-group-unstyled col-md-4 col-xs-12">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-record"></i>
 				</span>
-				<input type="text" class="form-control" placeholder="Ingresa tu punto de partida">
+				<input type="text" id="punto-partida" class="form-control" placeholder="Ingresa tu punto de partida">
 			</div>
 
-			<div class="input-group input-group-unstyled col-md-5 col-xs-12">
+			<div class="input-group input-group-unstyled col-md-4 col-xs-12">
 				<span class="input-group-addon">
 					<i class="glyphicon glyphicon-send"></i>
 				</span>
-				<input type="text" class="form-control" placeholder="Ingresa tu destino">
+				<input type="text" id="punto-destino" class="form-control" placeholder="Ingresa tu destino">
+			</div>
+			
+			<div class="col-md-2 col-xs-6 text-center btn-center">
+				<a href="#" class="btn btn-lab" role="button" id="trazar-ruta">Trazar ruta</a>
 			</div>
 
 			<span class="input-group btn-separator col-md-1 hidden-xs hidden-sm"></span>
 
-			<div class="col-md-1 text-center btn-encuentrame">
+			<div class="col-md-1 col-xs-6 text-center btn-center">
 				<a href="#" class="btn btn-lab" role="button" id="encuentrame">Encuéntrame</a>
 			</div>
 		</div>
