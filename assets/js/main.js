@@ -12,6 +12,16 @@ function initMap() {
     animation: google.maps.Animation.DROP
   });
 
+  marcadorLaboratoria.addListener("click", toggleBounce);
+
+  function toggleBounce(){
+    if(marcadorLaboratoria.getAnimation() !== null){
+      marcadorLaboratoria.setAnimation(null);
+    }else{
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
+
   function buscar(){
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
@@ -20,14 +30,14 @@ function initMap() {
 
   document.getElementById("encuentrame").addEventListener("click", buscar);
 
-  var latitud,longitud;
+  var latitud,longitud,miUbicacion;
 
   var funcionExito = function(posicion){
     
     latitud = posicion.coords.latitude;
     longitud = posicion.coords.longitude;
 
-    var miUbicacion = new google.maps.Marker({
+    miUbicacion = new google.maps.Marker({
       position: {lat:latitud, lng:longitud},
       map: map,
       animation: google.maps.Animation.DROP
@@ -50,6 +60,9 @@ function initMap() {
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer;
 
+  var tarifa = document.getElementById("tarifa");
+  var textoTarifa = document.getElementById("textoTarifa");
+
   var calculateAndDisplayRoute = function(directionsService, directionsDisplay){
     directionsService.route({
       origin: inputPartida.value,
@@ -57,7 +70,27 @@ function initMap() {
       travelMode: 'DRIVING'
     }, function(response, status){
       if(status === 'OK'){
-        directionsDisplay.setDirections(response);
+
+        var distancia = Number((response.routes[0].legs[0].distance.text.replace("km","")).replace(",","."));
+          tarifa.classList.remove("none");
+
+          var costo = distancia * 1.75;
+
+          if(costo < 4.0){
+            textoTarifa.innerHTML = "S/. 4"
+          }else{
+            textoTarifa.innerHTML = "S/. " + parseInt(costo);
+          }
+
+          console.log(response.routes[0].legs[0].distance.text);
+          directionsDisplay.setDirections(response);
+
+          if(miUbicacion !== undefined){
+            miUbicacion.setMap(null);
+          }
+
+          marcadorLaboratoria.setMap(null);
+          
       }else{
         window.alert("No encontramos una ruta.");
       }
