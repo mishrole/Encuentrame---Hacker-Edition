@@ -8,7 +8,8 @@ function initMap() {
 
   var marcadorLaboratoria = new google.maps.Marker({
     position: laboratoriaLima,
-    map: map
+    map: map,
+    animation: google.maps.Animation.DROP
   });
 
   function buscar(){
@@ -28,7 +29,8 @@ function initMap() {
 
     var miUbicacion = new google.maps.Marker({
       position: {lat:latitud, lng:longitud},
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
 
     map.setZoom(18);
